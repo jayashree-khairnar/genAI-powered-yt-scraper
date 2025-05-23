@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <title>Video Summary</title>
+
+<body>
+    <div class="summary-title">
+        <div class="back-btn"> <a href="javascript:history.back()">Go Back</a> </div>
+        <span class="video-title">
+            {% for vid in vid_details %}
+                {% if v_id|string() == vid['VideoId'|string()] %}
+                    <input type="image" src="{{vid['ThumbnailLink']}}" height=140 width=180>
+                    <h3>{{vid['Title']}}</h3>
+                {% endif %}
+            {% endfor %}
+        </span>
+    </div>
+
+    <div class="summary-menu">
+        <table class="table table-striped" align="center">
+            <thead>
+                <th style="padding: 10px;" align="center">Video Summary</th>
+            </thead>
+
+            <tbody>
+                <td style="padding: 10px;" align="center">{{ summary }}</td>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <title>Video Timestamps</title>
+
+<body>
+    <div class="timestamp-title">
+        <div class="back-btn">
+            <a href="javascript:history.back()">Go Back</a>
+        </div>
+        <span class="video-title">
+            {% for vid in vid_details %}
+                {% if v_id|string() == vid['VideoId'|string()] %}
+                    <input type="image" src="{{vid['ThumbnailLink']}}" height=140 width=180>
+                    <h3>{{vid['Title']}}</h3>
+                {% endif %}
+            {% endfor %}
+        </span>
+    </div>
+
+    <div class="menu">
+        <table class="table table-striped" align="center">
+            <thead>
+                <tr>
+                    <th style="padding: 10px;" align="center">Index</th>
+                    <th style="padding: 10px;" align="center">Timestamp</th>
+                    <th style="padding: 10px;" align="center">Topics Discussed</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for index, timestamp, topic in topics %}
+                <tr>
+                    <td style="padding: 10px;" align="center">{{ index }}</td>
+                    <td style="padding: 10px;" align="center">{{ timestamp }}</td>
+                    <td style="padding: 10px;" align="center">{{ topic }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

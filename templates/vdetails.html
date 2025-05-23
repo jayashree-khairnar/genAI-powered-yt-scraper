@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+        <meta charset="UTF-8">
+        <title>Video Details</title>
+    </head>
+
+<body>
+    <div class="main">
+        <span> <a href="javascript:history.back()">Go Back</a> </span>
+        <div class="channel-details">
+            <input type="image" align="center" src="{{ profile }}" alt="Avatar">
+
+            <div class="title-subscriber-section">
+                <h3 align="center"> {{ ch_name }}  </h3>
+                <h3 align="center"> {{ subscribers }} subscribers </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu">
+        <span>
+            <a href="dashboard">&nbsp;Click for DASHBOARD </a>
+        </span>
+
+        <table class="table table-striped">
+            <thead>
+                <th style="padding: 10px;">Thumbnail</th>
+                <th style="padding: 10px;">Title</th>
+                <th style="padding: 10px;">Published Date</th>
+                <th style="padding: 10px;">Views</th>
+                <th style="padding: 10px;">Likes</th>
+                <th style="padding: 10px;">Total Comments</th>
+                <th style="padding: 10px;">Video Timestamp</th>
+                <th style="padding: 10px;">Video Summary</th>
+                <th style="padding: 10px;">Comments</th>
+                <th style="padding: 10px;">Video Link</th>
+            </thead>
+
+            <tbody>
+                {% for vid in vid_detail %}
+                <tr>
+                    <td><img src="{{vid['ThumbnailLink']}}" height=80 width=100></img></td>
+                    <td style="padding: 10px;">{{vid['Title']}}</td>
+                    <td style="padding: 10px;" align="center">{{vid['PublishedDate']}}</td>
+                    <td style="padding: 10px;" align="center">{{vid['Views']}}</td>
+                    <td style="padding: 10px;" align="center">{{vid['Likes']}}</td>
+                    <td style="padding: 10px;" align="center">{{vid['CommentsCount']}}</td>
+                    <td align="center"><a href="timestamp/{{vid['VideoId']}}">View Timestamp</a></td>
+                    <td align="center"><a href="summary/{{vid['VideoId']}}">View Summary</a></td>
+                    <td align="center"><a href="comments/{{vid['VideoId']}}">&nbsp;View Comments</a></td>
+                    <td align="center"> <a href={{vid['VideoLink']}}>&nbsp;{{vid['VideoLink']}}</a> </td>
+                <tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
